@@ -1,6 +1,9 @@
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
+const cool = require('cool-ascii-faces')
+
+const PORT = process.env.PORT || 5000
 
 const express = require('express')
 const app = express()
@@ -31,4 +34,7 @@ app.use('/', indexRouter)
 app.use('/authors', authorRouter)
 app.use('/books', bookRouter)
 
-app.listen(process.env.PORT || 3000)
+
+.get('/cool', (req, res) => res.send(cool()))
+
+app.listen(PORT,() => console.log(`Listening on ${ PORT}`))
